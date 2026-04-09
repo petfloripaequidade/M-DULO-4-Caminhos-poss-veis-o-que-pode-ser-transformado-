@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Módulo 4 - Caminhos Possíveis - PET1
+    </title>
+    <style>
+      /* IDENTIDADE VISUAL MÓDULO 4: VERDE E AMARELO */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: #fcf9f5; color: #1a2a26; scroll-behavior: smooth; }
+        
+        .banner-logos { background: white; padding: 25px; text-align: center; border-bottom: 1px solid #eee; }
+        .banner-logos img { width: 100%; max-width: 1100px; border-radius: 12px; }
+
+        .hero { 
+            background: linear-gradient(135deg, #1E8449 0%, #F1C40F 100%);
+            color: white; padding: 100px 20px; text-align: center;
+            display: flex; flex-direction: column; align-items: center; min-height: 60vh;
+        }
+        .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.1; max-width: 900px; text-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .mod-pill { 
+            background: white; color: #1E8449; display: inline-block; 
+            padding: 10px 40px; border-radius: 12px; font-weight: 900; 
+            font-size: 24px; margin: 25px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* ABAS DE NAVEGAÇÃO */
+        nav { 
+            background: white; position: sticky; top: 0; z-index: 1000; 
+            border-bottom: 4px solid #F1C40F; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        nav ul { display: flex; justify-content: center; list-style: none; padding: 15px 0; flex-wrap: wrap; gap: 10px; }
+        nav ul li a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; padding: 8px 15px; text-transform: uppercase; transition: 0.3s; }
+        nav ul li a:hover { color: #1E8449; }
+
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 40px; padding: 50px; margin-bottom: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .section-title { font-size: 32px; color: #1E8449; margin-bottom: 5px; border-bottom: 6px solid #F1C40F; display: inline-block; }
+        .section-subtitle { font-size: 18px; color: #555; font-style: italic; margin-bottom: 25px; display: block; font-weight: 500; }
+        
+        .video-box { width: 100%; aspect-ratio: 16/9; border-radius: 30px; overflow: hidden; background: #000; }
+        .img-full { width: 100%; max-width: 800px; border-radius: 20px; display: block; margin: 20px auto; object-fit: cover;}
+        
+        .btn-action { background: #1E8449; color: white; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.3s; }
+        .btn-action:hover { background: #F1C40F; color: #1a2a26; transform: scale(1.05); }
+        .btn-aval { background: #F1C40F; color: #1a2a26; width: 100%; text-align: center; font-size: 20px; margin-top: 15px; }
+        .btn-aval:hover { background: #1E8449; color: white; }
+
+        .podcast-row { display: flex; gap: 30px; align-items: stretch; flex-wrap: wrap; margin-top: 20px; }
+        .audio-card { background: #f4fbf7; border: 2px solid #e1f0e8; border-radius: 40px; padding: 40px; flex: 1.5; min-width: 300px; }
+
+        .flip-card { flex: 1; min-width: 250px; height: 280px; perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; }
+        .flip-front { background: linear-gradient(135deg, #1E8449 0%, #F1C40F 100%); color: white; }
+        .flip-back { background: #ffffff; color: #1E8449; border: 6px solid #F1C40F; transform: rotateY(180deg); }
+
+        .ref-item { border-left: 4px solid #F1C40F; padding-left: 15px; margin-bottom: 15px; font-size: 15px; line-height: 1.6; }
+        .creditos-list { list-style: none; margin-top: 20px; font-size: 17px; line-height: 1.8; }
+        footer { background: #1a2a26; color: white; padding: 60px 20px; text-align: center; }
+
+        /* Estilos adicionais para listas dentro dos cards */
+        .content-list { list-style: none; margin-top: 20px; }
+        .content-list li { background: #f4fbf7; margin-bottom: 10px; padding: 15px 20px; border-radius: 15px; border-left: 4px solid #1E8449; font-size: 16px; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <!-- BANNER COM LOGOS (Mesmo do Módulo 1) -->
+    <div class="banner-logos">
+      <img src="https://drive.google.com/thumbnail?id=1QOIXz4Wz_mh7SOvM4KU6Jy7LJb3I3f3o&amp;sz=w1200" alt="Logos Institucionais" />
+    </div>
+
+    <!-- CABEÇALHO HERO -->
+    <header class="hero">
+      <h1>
+        Caminhos possíveis: o que pode ser transformado?
+      </h1>
+      <div class="mod-pill">
+        MÓDULO 4
+      </div>
+      <p style="font-size: 20px; font-weight: 600; max-width: 800px;">
+        Transformando o cotidiano da Atenção Primária à Saúde articulando formação, trabalho em equipe e relação com o território.
+      </p>
+    </header>
+
+    <!-- NAVEGAÇÃO SUPERIOR -->
+    <nav aria-label="Navegação Principal">
+      <ul>
+        <li><a href="#boas-vindas">Boas-vindas</a></li>
+        <li><a href="#video-aula">Vídeo Aula</a></li>
+        <li><a href="#mapa-mental">Mapa Mental</a></li>
+        <li><a href="#infografico">Infográfico</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+        <li><a href="#avaliacao">Avaliação Final</a></li>
+        <li><a href="#referencias">Referências</a></li>
+        <li><a href="#creditos">Créditos</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">
+      
+      <!-- BOAS-VINDAS -->
+      <section id="boas-vindas" class="card" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <h2 class="section-title">
+            Boas-vindas!
+          </h2>
+          <p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+            Ao longo dos módulos anteriores, refletimos sobre o conceito de equidade em saúde, discutimos as interseccionalidades e analisamos os desafios concretos do trabalho na Atenção Primária à Saúde.
+            <br><br>
+            Agora, chegamos a uma pergunta fundamental: <strong>o que pode ser transformado, na prática, no cotidiano dos serviços de saúde?</strong>
+            <br><br>
+            Neste módulo, vamos apresentar quatro caminhos possíveis para promover equidade na Atenção Primária à Saúde: a Educação Permanente; as práticas interprofissionais; a integração ensino-serviço-comunidade; e a produção de conhecimento.
+          </p>
+        </div>
+        <img src="Capa.jpg" style="width: 100%; max-width: 400px; border-radius: 30px; object-fit: cover;" alt="Capa Boas Vindas" />
+      </section>
+
+      <!-- VÍDEO AULA -->
+      <section id="video-aula" class="card" style="text-align: center;">
+        <h2 class="section-title">
+          Vídeo Aula
+        </h2>
+        <span class="section-subtitle">O que pode ser transformado no cotidiano dos serviços de saúde?</span>
+        <div class="video-box">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/voiCZ8lBYT8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+          </iframe>
+        </div>
+      </section>
+
+      <!-- MAPA MENTAL -->
+      <section id="mapa-mental" class="card" style="text-align: center;">
+        <h2 class="section-title">
+          Mapa Mental
+        </h2>
+        <span class="section-subtitle">Síntese visual dos caminhos possíveis.</span>
+        <a href="Mapa%20mental.jpg" target="_blank">
+          <img src="Mapa%20mental.jpg" class="img-full" alt="Mapa Mental" />
+        </a>
+      </section>
+
+      <!-- INFOGRÁFICO -->
+      <section id="infografico" class="card" style="text-align: center;">
+        <h2 class="section-title">
+          Infográfico
+        </h2>
+        <span class="section-subtitle">Os 4 caminhos da equidade na prática.</span>
+        <a href="Infogr%C3%A1fico.jpg" target="_blank">
+          <img src="Infogr%C3%A1fico.jpg" class="img-full" alt="Infográfico" />
+        </a>
+      </section>
+
+      <!-- PODCAST -->
+      <section id="podcast" class="card">
+        <div class="podcast-row">
+          <div class="audio-card">
+            <h2 class="section-title">
+              Podcast
+            </h2>
+            <p style="margin: 20px 0; font-size: 16px; line-height: 1.6;">
+              Ouça nosso roteiro em áudio! Neste episódio, detalhamos como a Educação Permanente, as práticas interprofissionais e a integração com o território ajudam a construir um cuidado em conjunto no SUS.
+            </p>
+            <audio controls style="width: 100%; margin-top: 15px; outline: none;">
+              <source src="A_transforma%C3%A7%C3%A3o_do_SUS_na_rotina_di%C3%A1ria%20(1).m4a" type="audio/mp4">
+              Seu navegador não suporta o elemento de áudio.
+            </audio>
+          </div>
+          <div class="flip-card" tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-front">
+                <h3>
+                  Reflexão
+                </h3>
+                <p style="margin-top: 15px; font-style: italic;">
+                  "A equidade como prática cotidiana..."
+                </p>
+              </div>
+              <div class="flip-back">
+                <h3>
+                  Compromisso
+                </h3>
+                <p style="margin-top: 15px; font-style: italic;">
+                  "Promover equidade é um compromisso coletivo que se constrói no cotidiano, todos os dias no SUS."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AVALIAÇÃO FINAL -->
+      <section id="avaliacao" class="card" style="text-align: center; border: 3px dashed #F1C40F;">
+        <h2 class="section-title">
+          Avaliação Final
+        </h2>
+        <p style="margin-top: 10px; font-size: 20px; font-weight: 600; color: #1E8449;">
+          Venha testar seu aprendizado!
+        </p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScpdMCIShulDI2YzO3_-WV3jWi981UjSUGhYpnbc58hm1mQdQ/viewform?usp=publish-editor" target="_blank" class="btn-action btn-aval"> ACESSAR FORMULÁRIO 📝 </a>
+      </section>
+
+      <!-- REFERÊNCIAS -->
+      <section id="referencias" class="card">
+        <h2 class="section-title">
+          Referências Bibliográficas
+        </h2>
+        <div style="margin-top: 25px;">
+          <p class="ref-item">
+            1. Sousa, A. S.; Santos, R. I. F. A Educação em Saúde na promoção do empoderamento comunitário: uma revisão integrativa da atuação multiprofissional. <a href="https://www.gvaa.com.br/revista/index.php/REBES/article/view/11390" target="_blank" style="color: #1E8449; text-decoration: none; font-weight: bold;">[Acessar]</a>
+          </p>
+          <p class="ref-item">
+            2. Nogueira, R. S. Integrality in care: from Primary Health Care to Specialty. <a href="https://www.periodicojs.com.br/index.php/hs/article/view/1190" target="_blank" style="color: #1E8449; text-decoration: none; font-weight: bold;">[Acessar]</a>
+          </p>
+          <p class="ref-item">
+            3. Prichula, F. F. et al. Equidade e diversidade: entendimento de profissionais do SUS. <a href="https://www.sprgs.org.br/diaphora/ojs/index.php/diaphora/article/view/533" target="_blank" style="color: #1E8449; text-decoration: none; font-weight: bold;">[Acessar]</a>
+          </p>
+          <p class="ref-item">
+            2. Nogueira, R. S. Integrality in care: from Primary Health Care to Specialty. <a href="https://www.periodicojs.com.br/index.php/hs/article/view/1190" target="_blank" style="color: #E67E22; text-decoration: none;">[Acessar]</a>
+          </p>
+          <p class="ref-item">
+            3. Prichula, F. F. et al. Equidade e diversidade: entendimento de profissionais do SUS. <a href="https://www.sprgs.org.br/diaphora/ojs/index.php/diaphora/article/view/533" target="_blank" style="color: #E67E22; text-decoration: none;">[Acessar]</a>
+          </p>
+          <p class="ref-item">
+            4. Constituição Federal de 1988 – Art. 196 a 200
+          </p>
+          <p class="ref-item">
+            5. Lei Orgânica da Saúde – Lei nº 8.080/1990
+          </p>
+          <p class="ref-item">
+            6. Política Nacional de Atenção Básica (PNAB)
+          </p>
+        </div>
+      </section>
+
+      <!-- CRÉDITOS -->
+      <section id="creditos" class="card">
+        <h2 class="section-title">
+          Créditos
+        </h2>
+        <ul class="creditos-list">
+          <li>
+            <strong> Organização: </strong>
+            Beatrice Caiula
+          </li>
+          <li>
+            <strong> Curso: </strong>
+            Medicina / UFSC
+          </li>
+          <li>
+            <strong> Realização: </strong>
+            Grupo PET 1
+          </li>
+          <li>
+            <strong> Parceria: </strong>
+            UFSC, UDESC e Prefeitura Municipal de Florianópolis/SC
+          </li>
+        </ul>
+      </section>
+    </main>
+    
+    <!-- RODAPÉ -->
+    <footer>
+      <p>
+        Prefeitura de Florianópolis | PET1 Administração - UFSC
+      </p>
+    </footer>
+  </body>
+</html>
